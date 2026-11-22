@@ -1,10 +1,13 @@
-const CACHE = "konglv-v1";
+const CACHE = "konglv-v2";
+const BASE = new URL("./", self.location).pathname;
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(CACHE)
-      .then((cache) => cache.addAll(["/", "/manifest.webmanifest", "/favicon.svg"]))
+      .then((cache) =>
+        cache.addAll([BASE, `${BASE}manifest.webmanifest`, `${BASE}favicon.svg`]),
+      )
       .then(() => self.skipWaiting()),
   );
 });
@@ -37,7 +40,7 @@ self.addEventListener("fetch", (event) => {
         const cached = await cache.match(request);
         if (cached) return cached;
         if (request.mode === "navigate") {
-          const shell = (await cache.match("/")) ?? (await cache.match("/index.html"));
+          const shell = (await cache.match(BASE)) ?? (await cache.match(`${BASE}index.html`));
           if (shell) return shell;
         }
         throw new Error("offline");

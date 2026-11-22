@@ -6,7 +6,8 @@ import "./index.css";
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
   window.addEventListener("load", () => {
-    void navigator.serviceWorker.register("/sw.js");
+    const base = import.meta.env.BASE_URL;
+    void navigator.serviceWorker.register(`${base}sw.js`, { scope: base });
   });
 }
 

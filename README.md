@@ -42,7 +42,15 @@ npm run preview   # 预览生产构建
 
 ## 部署
 
-静态文件，没有后端。
+静态文件，没有后端。生产构建的资源路径由环境变量 `BASE_PATH` 决定（默认 `/`）。部署到子路径时需要带上结尾斜杠，例如 GitHub Pages 使用 `BASE_PATH=/konglv/`。
+
+### GitHub Pages
+
+本仓库的 `main` 分支会通过 `.github/workflows/pages.yml` 自动构建并发布到：
+
+https://0xverybigorange.github.io/konglv/
+
+也可以在仓库的 Actions 页手动触发 “Deploy to GitHub Pages”。
 
 ### Cloudflare Pages
 
