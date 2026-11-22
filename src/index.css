@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+  --font-num: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --color-ink: #0b0d12;
+  --color-panel: #171b24;
+  --color-panel-2: #212734;
+  --color-cream: #f4f0e6;
+  --color-muted: #b7b1a6;
+  --color-faint: #8d877c;
+  --color-brass: #e6b15a;
+  --color-teal: #8fd0c4;
+  --color-coral: #e58b73;
+  --color-sky: #9ebbe8;
+  --color-violet: #c4b2ef;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-cream);
+  background:
+    radial-gradient(1100px 560px at 50% -12%, rgba(230, 177, 90, 0.16), transparent 58%),
+    radial-gradient(700px 480px at 110% 110%, rgba(143, 208, 196, 0.08), transparent 46%),
+    var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(230, 177, 90, 0.35);
+}
+
+.shell {
+  width: min(100%, 32rem);
+  margin-inline: auto;
+}
+
+.pt-safe {
+  padding-top: max(1.35rem, env(safe-area-inset-top));
+}
+
+.pb-safe {
+  padding-bottom: max(1.15rem, env(safe-area-inset-bottom));
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  border: 0;
+  border-radius: 1rem;
+  padding: 0.7rem 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: transform 0.12s ease, filter 0.12s ease, background 0.12s ease;
+}
+
+.btn:active {
+  transform: scale(0.985);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.btn-primary {
+  color: #24180a;
+  background: linear-gradient(180deg, #f3d09a 0%, #e0a84a 100%);
+  box-shadow: 0 12px 30px rgba(224, 168, 74, 0.16);
+}
+
+.btn-ghost {
+  color: var(--color-cream);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgba(244, 240, 230, 0.16);
+}
+
+.btn-panic {
+  color: #2a110d;
+  background: linear-gradient(180deg, #f0a894 0%, #e07a64 100%);
+  box-shadow: 0 12px 28px rgba(224, 122, 100, 0.16);
+}
+
+.btn-quiet {
+  color: var(--color-coral);
+  background: rgba(229, 139, 115, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(229, 139, 115, 0.45);
+}
+
+.rise {
+  animation: rise 0.45s ease both;
+}
+
+.phase-in {
+  animation: rise 0.32s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ripple {
+  position: absolute;
+  inset: 16%;
+  border: 1.5px solid var(--beat, #e6b15a);
+  border-radius: 999px;
+  animation: ripple 0.85s ease-out forwards;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.55;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.42);
+  }
+}
+
+.breath-orb {
+  animation: breath 10s ease-in-out infinite;
+}
+
+@keyframes breath {
+  0%,
+  100% {
+    transform: scale(0.9);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .phase-in,
+  .ripple,
+  .breath-orb {
+    animation: none;
+  }
+}
